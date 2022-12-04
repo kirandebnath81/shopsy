@@ -1,0 +1,23 @@
+a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+[data-info] {
+  position: relative;
+}
+
+[data-info]:hover::after {
+  content: attr(data-info);
+  position: absolute;
+  z-index: 5;
+  right: -17px;
+  top: 70px;
+  border: 1px solid #000;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 4px 5px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 1);
+  color: rgb(0, 0, 0);
+}
