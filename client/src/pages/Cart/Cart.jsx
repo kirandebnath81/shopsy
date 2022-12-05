@@ -48,6 +48,12 @@ import { v4 } from "uuid";
 import { useAuth, useProducts, useProfile } from "../../contexts";
 import Address from "./components/Address";
 
+//local server base url
+// const BASE_URL = "http://localhost:8000/api/payment";
+
+////production server base url
+const BASE_URL = "https://shopsy-one.vercel.app/api/payment";
+
 const Cart = () => {
   const navigate = useNavigate();
 
@@ -101,7 +107,7 @@ const Cart = () => {
 
     const price = getTotalPrice(cartItems);
     // creating a new order
-    const orderUrl = "http://localhost:8000/api/payment/orders";
+    const orderUrl = `${BASE_URL}/orders`;
     const result = await axios.post(orderUrl, { amount: price });
 
     if (!result) {
@@ -122,7 +128,7 @@ const Cart = () => {
       order_id: id,
       handler: async function (response) {
         try {
-          const verifyUrl = "http://localhost:8000/api/payment/verify";
+          const verifyUrl = `${BASE_URL}/verify`;
           const { data } = await axios.post(verifyUrl, response);
           setOrderData(response);
           setPaymentSuccessMsg(data.message);
